@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 if [ "$#" -lt 1 ]; then
     echo "usage: mdtopdf input.md [output.pdf]"
     exit 1
@@ -12,7 +11,7 @@ fi
 
 markdown=$(cat "$1")
 
-echo '<link rel="stylesheet" href="http://blog.yuuko.cn/markdown.css/public/styles/github/markdown.css">' > temp.html
+echo '<link rel="stylesheet" href="https://raw.githubusercontent.com/khuedoan98/mdtopdf/master/markdown.css">' > temp.html
 echo '<meta charset="UTF-8">' >> temp.html
 echo '<div class="markdown-body">' >> temp.html
 
