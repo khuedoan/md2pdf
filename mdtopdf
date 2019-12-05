@@ -11,7 +11,11 @@ fi
 
 markdown=$(cat "$1")
 
-echo '<link rel="stylesheet" href="https://raw.githubusercontent.com/khuedoan98/mdtopdf/master/markdown.css">' > temp.html
+if [ ! -f "markdown.css" ]; then
+    curl -O "https://raw.githubusercontent.com/khuedoan98/mdtopdf/master/markdown.css"
+fi
+
+echo '<link rel="stylesheet" href="./markdown.css">' > temp.html
 echo '<meta charset="UTF-8">' >> temp.html
 echo '<div class="markdown-body">' >> temp.html
 
@@ -27,4 +31,4 @@ wkhtmltopdf \
     --page-size     A4 \
     temp.html "$pdf_path"
 
-rm temp.html
+rm temp.html markdown.css
