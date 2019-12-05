@@ -1,7 +1,7 @@
 #!/bin/sh
 
 markdown=$(cat "$1")
-base_file_name=$(echo "$1" | cut -d '.' -f1)
+pdf="$(basename "$1" .md).pdf"
 
 echo '<link rel="stylesheet" href="http://blog.yuuko.cn/markdown.css/public/styles/github/markdown.css">' > temp.html
 echo '<meta charset="UTF-8">' >> temp.html
@@ -17,6 +17,6 @@ wkhtmltopdf \
     --margin-right  20 \
     --margin-top    10 \
     --page-size     A4 \
-    temp.html "$base_file_name".pdf
+    temp.html "$pdf"
 
 rm temp.html
