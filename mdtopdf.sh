@@ -1,7 +1,16 @@
 #!/bin/sh
 
+
+if [ "$#" -lt 1 ]; then
+    echo "usage: mdtopdf input.md [output.pdf]"
+    exit 1
+elif [ "$#" -lt 2 ]; then
+    pdf_path="$(basename "$1" .md).pdf"
+else
+    pdf_path="$2"
+fi
+
 markdown=$(cat "$1")
-pdf="$(basename "$1" .md).pdf"
 
 echo '<link rel="stylesheet" href="http://blog.yuuko.cn/markdown.css/public/styles/github/markdown.css">' > temp.html
 echo '<meta charset="UTF-8">' >> temp.html
@@ -17,6 +26,6 @@ wkhtmltopdf \
     --margin-right  20 \
     --margin-top    10 \
     --page-size     A4 \
-    temp.html "$pdf"
+    temp.html "$pdf_path"
 
 rm temp.html
