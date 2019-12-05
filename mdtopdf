@@ -27,7 +27,7 @@ wkhtmltopdf \
     --margin-bottom 20 \
     --margin-left   20 \
     --margin-right  20 \
-    --margin-top    10 \
+    --margin-top    15 \
     --page-size     A4 \
     temp.html "$pdf_path"
 
