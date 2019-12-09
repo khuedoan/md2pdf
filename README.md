@@ -9,6 +9,12 @@ Simple and easy to use Markdown to PDF converter
 - Internet connection
 - `curl`, `wkhtmltopdf`
 
+### Run without install
+
+```sh
+curl -s https://raw.githubusercontent.com/khuedoan98/mdtopdf/master/mdtopdf | bash -s example.md
+``````
+
 ### Installation
 
 Use directly with `./mdtopdf` or copy to `$PATH`, for example:
