@@ -24,6 +24,7 @@ curl https://api.github.com/markdown/raw -X "POST" -H "Content-Type: text/plain"
 echo '</div>' >> temp.html
 
 wkhtmltopdf \
+    --enable-local-file-access \
     --margin-bottom 20 \
     --margin-left   20 \
     --margin-right  20 \
