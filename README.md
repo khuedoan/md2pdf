@@ -12,7 +12,7 @@ Simple and easy to use Markdown to PDF converter
 ### Run without install
 
 ```sh
-curl -s https://raw.githubusercontent.com/khuedoan98/mdtopdf/master/mdtopdf | bash -s example.md
+curl -s https://raw.githubusercontent.com/khuedoan/mdtopdf/master/mdtopdf | bash -s example.md
 ``````
 
 ### Installation
