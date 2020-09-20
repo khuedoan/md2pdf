@@ -1,12 +1,15 @@
 package main
 
 import (
-    // "bytes"
+    "bytes"
     "fmt"
     "io/ioutil"
     "os"
 
-    // "github.com/yuin/goldmark"
+    "github.com/yuin/goldmark"
+    "github.com/yuin/goldmark/extension"
+    "github.com/yuin/goldmark/parser"
+    "github.com/yuin/goldmark/renderer/html"
 )
 
 func main() {
@@ -15,11 +18,23 @@ func main() {
     if (err != nil) {
         panic(err)
     }
-    fmt.Print(string(markdown))
 
-    // var buf bytes.Buffer
+    md := goldmark.New(
+        goldmark.WithExtensions(extension.GFM),
+        goldmark.WithParserOptions(
+            parser.WithAutoHeadingID(),
+        ),
+        goldmark.WithRendererOptions(
+            html.WithHardWraps(),
+            html.WithXHTML(),
+        ),
+    )
 
-    // if err := goldmark.Convert(source, &buf); err != nil {
-    //     panic(err)
-    // }
+    var buf bytes.Buffer
+
+    if err := md.Convert(markdown, &buf); err != nil {
+        panic(err)
+    }
+
+    fmt.Print(buf.String())
 }
