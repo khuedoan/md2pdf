@@ -288,7 +288,7 @@ func main() {
 	}
 
 	// Write buffer contents to file on disk
-	err = pdfgen.WriteFile("./simplesample.pdf")
+	err = pdfgen.WriteFile(fmt.Sprintf("%s.pdf", filename))
 	if err != nil {
 		log.Fatal(err)
 	}
