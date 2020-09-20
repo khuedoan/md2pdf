@@ -5,12 +5,57 @@ import (
     "fmt"
     "io/ioutil"
     "os"
+    "log"
 
     "github.com/yuin/goldmark"
     "github.com/yuin/goldmark/extension"
     "github.com/yuin/goldmark/parser"
     "github.com/yuin/goldmark/renderer/html"
+    "github.com/SebastiaanKlippert/go-wkhtmltopdf"
 )
+
+func PDFGenerator(html bytes.Buffer) {
+    // Create new PDF generator
+    pdfgen, err := wkhtmltopdf.NewPDFGenerator()
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    // Set global options
+    pdfgen.Dpi.Set(300)
+    pdfgen.Orientation.Set(wkhtmltopdf.OrientationLandscape)
+    pdfgen.Grayscale.Set(true)
+
+    // Create a new input page from an URL
+    pdfgen.AddPage(wkhtmltopdf.NewPageReader(bytes.NewReader(html.Bytes())))
+	err = pdfgen.Create()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+    // Set options for this page
+    // page.FooterRight.Set("[page]")
+    // page.FooterFontSize.Set(10)
+    // page.Zoom.Set(0.95)
+
+    // Add to document
+    // pdfgen.AddPage(page)
+
+    // Create PDF document in internal buffer
+    err = pdfgen.Create()
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    // Write buffer contents to file on disk
+    err = pdfgen.WriteFile("./simplesample.pdf")
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    fmt.Println("Done")
+    // Output: Done
+}
 
 func main() {
     filename := os.Args[1]
@@ -268,5 +313,5 @@ func main() {
 
     buf.WriteString("</div>")
 
-    fmt.Print(buf.String())
+    PDFGenerator(buf)
 }
