@@ -13,6 +13,8 @@ Simple and easy to use Markdown to PDF converter
 Download the binary and copy to `$PATH`, for example:
 
 ```sh
+$ curl -OL https://github.com/khuedoan/md2pdf/releases/download/v0.1/md2pdf
+$ chmod +x md2pdf
 $ sudo cp md2pdf /usr/local/bin/
 ```
 
