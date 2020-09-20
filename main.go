@@ -270,32 +270,14 @@ func main() {
 
 	buf.WriteString("</div>")
 
-	tmpFile, err := ioutil.TempFile(os.TempDir(), "md2pdf-html-")
-	if err != nil {
-		log.Fatal("Cannot create temporary file", err)
-	}
-
-	// Remember to clean up the file afterwards
-	defer os.Remove(tmpFile.Name())
-
-	// Example writing to the file
-	if _, err = tmpFile.Write(buf.Bytes()); err != nil {
-		log.Fatal("Failed to write to temporary HTML file", err)
-	}
-
 	pdfgen, err := wkhtmltopdf.NewPDFGenerator()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	pdfgen.AddPage(wkhtmltopdf.NewPage(tmpFile.Name()))
+	pdfgen.AddPage(wkhtmltopdf.NewPageReader(bytes.NewReader(buf.Bytes())))
 	err = pdfgen.Create()
 	if err != nil {
-		log.Fatal(err)
-	}
-
-	// Close the file
-	if err := tmpFile.Close(); err != nil {
 		log.Fatal(err)
 	}
 
