@@ -276,10 +276,6 @@ func main() {
 	}
 
 	pdfgen.AddPage(wkhtmltopdf.NewPageReader(bytes.NewReader(buf.Bytes())))
-	err = pdfgen.Create()
-	if err != nil {
-		log.Fatal(err)
-	}
 
 	// Create PDF document in internal buffer
 	err = pdfgen.Create()
