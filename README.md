@@ -13,7 +13,7 @@ Simple and easy to use Markdown to PDF converter
 Download the binary and copy to `$PATH`, for example:
 
 ```sh
-$ sudo cp mdtopdf /usr/local/bin/
+$ sudo cp md2pdf /usr/local/bin/
 ```
 
 ### Usage
@@ -21,13 +21,13 @@ $ sudo cp mdtopdf /usr/local/bin/
 This will create example.pdf in the current directory
 
 ```sh
-$ mdtopdf example.md
+$ md2pdf example.md
 ``````
 
 Or if you want to change the PDF name:
 
 ```sh
-$ mdtopdf input.md output.pdf
+$ md2pdf input.md output.pdf
 ``````
 
 ## Acknowledgments
