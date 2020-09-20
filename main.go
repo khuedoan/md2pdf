@@ -35,7 +35,7 @@ func main() {
 	var buf bytes.Buffer
 
 	const css = `
-.margin-tb-zero,
+	.margin-tb-zero,
 	.markdown-body ol ol,
 	.markdown-body ul ol,
 	.markdown-body ol ul,
