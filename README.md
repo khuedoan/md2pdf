@@ -2,6 +2,16 @@
 
 Simple and easy to use Markdown to PDF converter
 
+<!-- vim-markdown-toc GFM -->
+
+* [Getting Started](#getting-started)
+* [Prerequisites](#prerequisites)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Acknowledgments](#acknowledgments)
+
+<!-- vim-markdown-toc -->
+
 ## Getting Started
 
 ### Prerequisites
