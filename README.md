@@ -15,7 +15,7 @@ Download the binary and copy to `$PATH`, for example:
 ```sh
 $ curl -OL https://github.com/khuedoan/md2pdf/releases/download/v0.3/md2pdf
 $ chmod +x md2pdf
-$ sudo cp md2pdf /usr/local/bin/
+$ sudo mv md2pdf /usr/local/bin/
 ```
 
 ### Usage
