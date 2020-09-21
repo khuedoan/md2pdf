@@ -220,7 +220,6 @@ func main() {
 	}
 	.markdown-body img {
 	  max-width: 100%;
-	  max-height: 100%;
 	  -webkit-border-radius: 4px;
 	  border-radius: 4px;
 	  -webkit-box-shadow: 0 0 10px #555;
