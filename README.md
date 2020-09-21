@@ -32,6 +32,20 @@ Or if you want to change the PDF name:
 $ md2pdf input.md output.pdf
 ``````
 
+## Build from source
+
+### Run directly
+
+```sh
+go run . input.md
+```
+
+### Compile
+
+```sh
+go build
+```
+
 ## Acknowledgments
 
 - [GitHub Markdown CSS by iamcco](https://github.com/iamcco/markdown.css)
