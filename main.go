@@ -1,3 +1,5 @@
+//go:generate go run themes/include_themes.go
+
 package main
 
 import (
