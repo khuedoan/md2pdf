@@ -16,12 +16,17 @@ import (
 )
 
 func main() {
+	// Get user's option
 	input_file_name := os.Args[1]
+	output_file_name := os.Args[2]
+
+	// Read the markdown file
 	markdown, err := ioutil.ReadFile(input_file_name)
 	if err != nil {
 		panic(err)
 	}
 
+	// New Markdown to HTML converter
 	markdown_converter := goldmark.New(
 		goldmark.WithExtensions(extension.GFM),
 		goldmark.WithParserOptions(
@@ -33,24 +38,31 @@ func main() {
 		),
 	)
 
+	// Create buffer for HTML
 	var html bytes.Buffer
 
+	// Include the theme and set charset
 	html.WriteString(fmt.Sprintf("<style type=text/css>%s</style>", github_css))
 	html.WriteString("<meta charset=\"UTF-8\">\n")
+	// Div for the content
 	html.WriteString("<div class=\"markdown-body\">\n")
 
+	// Convert Markdown to HTML and save it to the buffer
 	err = markdown_converter.Convert(markdown, &html)
 	if err != nil {
 		panic(err)
 	}
 
+	// Close the content div
 	html.WriteString("</div>")
 
+	// New HTML to PDF converter
 	pdf_generator, err := wkhtmltopdf.NewPDFGenerator()
 	if err != nil {
 		panic(err)
 	}
 
+	// Add HTML page from previous step
 	pdf_generator.AddPage(wkhtmltopdf.NewPageReader(bytes.NewReader(html.Bytes())))
 
 	// Create PDF document in internal buffer
@@ -60,7 +72,7 @@ func main() {
 	}
 
 	// Write buffer contents to file on disk
-	err = pdf_generator.WriteFile(fmt.Sprintf("%s.pdf", input_file_name))
+	err = pdf_generator.WriteFile(output_file_name)
 	if err != nil {
 		panic(err)
 	}
