@@ -37,12 +37,14 @@ $ md2pdf input.md output.pdf
 ### Run directly
 
 ```sh
+go generate
 go run . input.md
 ```
 
 ### Compile
 
 ```sh
+go generate
 go build
 ```
 
