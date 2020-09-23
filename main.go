@@ -7,23 +7,22 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
-	"log"
 
+	"github.com/SebastiaanKlippert/go-wkhtmltopdf"
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
 	"github.com/yuin/goldmark/renderer/html"
-	"github.com/SebastiaanKlippert/go-wkhtmltopdf"
 )
 
 func main() {
-	filename := os.Args[1]
-	markdown, err := ioutil.ReadFile(filename)
-	if (err != nil) {
+	input_file_name := os.Args[1]
+	markdown, err := ioutil.ReadFile(input_file_name)
+	if err != nil {
 		panic(err)
 	}
 
-	md := goldmark.New(
+	markdown_converter := goldmark.New(
 		goldmark.WithExtensions(extension.GFM),
 		goldmark.WithParserOptions(
 			parser.WithAutoHeadingID(),
@@ -34,34 +33,35 @@ func main() {
 		),
 	)
 
-	var buf bytes.Buffer
+	var html bytes.Buffer
 
-	buf.WriteString(fmt.Sprintf("<style type=text/css>%s</style>", github_css))
-	buf.WriteString("<meta charset=\"UTF-8\">\n")
-	buf.WriteString("<div class=\"markdown-body\">\n")
+	html.WriteString(fmt.Sprintf("<style type=text/css>%s</style>", github_css))
+	html.WriteString("<meta charset=\"UTF-8\">\n")
+	html.WriteString("<div class=\"markdown-body\">\n")
 
-	if err := md.Convert(markdown, &buf); err != nil {
+	err = markdown_converter.Convert(markdown, &html)
+	if err != nil {
 		panic(err)
 	}
 
-	buf.WriteString("</div>")
+	html.WriteString("</div>")
 
-	pdfgen, err := wkhtmltopdf.NewPDFGenerator()
+	pdf_generator, err := wkhtmltopdf.NewPDFGenerator()
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 
-	pdfgen.AddPage(wkhtmltopdf.NewPageReader(bytes.NewReader(buf.Bytes())))
+	pdf_generator.AddPage(wkhtmltopdf.NewPageReader(bytes.NewReader(html.Bytes())))
 
 	// Create PDF document in internal buffer
-	err = pdfgen.Create()
+	err = pdf_generator.Create()
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 
 	// Write buffer contents to file on disk
-	err = pdfgen.WriteFile(fmt.Sprintf("%s.pdf", filename))
+	err = pdf_generator.WriteFile(fmt.Sprintf("%s.pdf", input_file_name))
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 }
