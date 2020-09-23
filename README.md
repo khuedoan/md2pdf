@@ -42,4 +42,4 @@ go build
 
 ## Acknowledgments
 
-- [GitHub Markdown CSS by iamcco](https://github.com/iamcco/markdown.css)
+- [GitHub Markdown CSS by iamcco](https://github.com/iamcco/markdown-preview.nvim/blob/master/app/_static/markdown.css)
