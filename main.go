@@ -35,7 +35,6 @@ func main() {
 	var buf bytes.Buffer
 
 	const css = `
-	.margin-tb-zero,
 	.markdown-body ol ol,
 	.markdown-body ul ol,
 	.markdown-body ol ul,
@@ -65,6 +64,12 @@ func main() {
 	.markdown-body > *:last-child {
 	  margin-bottom: 0 !important;
 	}
+	.markdown-body .table-of-contents ol {
+	  list-style: none;
+	}
+	.markdown-body .table-of-contents > ol {
+	  padding-left: 0;
+	}
 	.markdown-body * {
 	  -webkit-box-sizing: border-box;
 	  -moz-box-sizing: border-box;
@@ -80,6 +85,23 @@ func main() {
 	  margin-bottom: 16px;
 	  font-weight: bold;
 	  line-height: 1.4;
+	}
+	.markdown-body h1 .anchor,
+	.markdown-body h2 .anchor,
+	.markdown-body h3 .anchor,
+	.markdown-body h4 .anchor,
+	.markdown-body h5 .anchor,
+	.markdown-body h6 .anchor {
+	  margin-left: -24px;
+	  visibility: hidden;
+	}
+	.markdown-body h1:hover .anchor,
+	.markdown-body h2:hover .anchor,
+	.markdown-body h3:hover .anchor,
+	.markdown-body h4:hover .anchor,
+	.markdown-body h5:hover .anchor,
+	.markdown-body h6:hover .anchor {
+	  visibility: visible;
 	}
 	.markdown-body p,
 	.markdown-body blockquote,
@@ -118,6 +140,13 @@ func main() {
 	  font-size: 1em;
 	  color: #777;
 	}
+	.markdown-body hr {
+	  margin-top: 20px;
+	  margin-bottom: 20px;
+	  height: 0;
+	  border: 0;
+	  border-top: 1px solid #eee;
+	}
 	.markdown-body ol,
 	.markdown-body ul {
 	  padding-left: 2em;
@@ -139,6 +168,18 @@ func main() {
 	}
 	.markdown-body ul {
 	  list-style-type: disc;
+	}
+	.markdown-body dl {
+	  margin-bottom: 1.3em
+	}
+	.markdown-body dl dt {
+	  font-weight: 700;
+	}
+	.markdown-body dl dd {
+	  margin-left: 0;
+	}
+	.markdown-body dl dd p {
+	  margin-bottom: 0.8em;
 	}
 	.markdown-body blockquote {
 	  margin-left: 0;
@@ -167,6 +208,18 @@ func main() {
 	.markdown-body table td {
 	  padding: 6px 13px;
 	  border: 1px solid #ddd;
+	}
+	.markdown-body kbd {
+	  display: inline-block;
+	  padding: 5px 6px;
+	  font: 14px SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+	  line-height: 10px;
+	  color: #444d56;
+	  vertical-align: middle;
+	  background-color: #fafbfc;
+	  border: 1px solid #d1d5da;
+	  border-radius: 3px;
+	  box-shadow: inset 0 -1px 0 #d1d5da;
 	}
 	.markdown-body pre {
 	  word-wrap: normal;
@@ -220,10 +273,6 @@ func main() {
 	}
 	.markdown-body img {
 	  max-width: 100%;
-	  -webkit-border-radius: 4px;
-	  border-radius: 4px;
-	  -webkit-box-shadow: 0 0 10px #555;
-	  box-shadow: 0 0 10px #555;
 	}
 	.markdown-body strong {
 	  font-weight: bold;
