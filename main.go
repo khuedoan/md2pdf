@@ -42,7 +42,7 @@ func main() {
 	var html bytes.Buffer
 
 	// Include the theme and set charset
-	html.WriteString(fmt.Sprintf("<style type=text/css>%s</style>", github_css))
+	html.WriteString(fmt.Sprintf("<style type=text/css>%s</style>", css))
 	html.WriteString("<meta charset=\"UTF-8\">\n")
 	// Div for the content
 	html.WriteString("<div class=\"markdown-body\">\n")
