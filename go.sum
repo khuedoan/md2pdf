@@ -1,0 +1,4 @@
+github.com/SebastiaanKlippert/go-wkhtmltopdf v1.6.1 h1:Arp9w1xMGfnYFQH8don5x7b9oPQWQrUcpFquvBCFvlU=
+github.com/SebastiaanKlippert/go-wkhtmltopdf v1.6.1/go.mod h1:zRBvVJtIfhaWvQ9lPIkXrtona4qqSmjZ1HfKvq4dQzI=
+github.com/yuin/goldmark v1.3.1 h1:eVwehsLsZlCJCwXyGLgg+Q4iFWE/eTIMG0e8waCmm/I=
+github.com/yuin/goldmark v1.3.1/go.mod h1:mwnBkeHKe2W/ZEtQ+71ViKU8L12m81fl3OWwC1Zlc8k=
