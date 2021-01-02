@@ -1,0 +1,35 @@
+name: Go
+
+on:
+  push:
+    tags:
+    - v*
+
+jobs:
+
+  release:
+    if: github.event.base_ref == 'refs/heads/master'
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ^1.15
+
+    - name: Check out
+      uses: actions/checkout@v2
+
+    - name: Build
+      run: make build
+    
+    - name: Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
